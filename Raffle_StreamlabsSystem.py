@@ -49,8 +49,9 @@ class Settings:
             self.WinResponse = "{0} won {1} {3} and now has {2} {3} "
             self.StartResponse = "A raffle for {0} {1} has started! Type !join to join."
             self.NoJoinResponse = "Nobody joined the raffle so nobody wins, try again another day."
-            self.TestMessage1 = "$user has joined the raffle."
+            self.JoinMessage = "$user has joined the raffle."
             self.PermissionResp = "$user -> only $permission ($permissioninfo) and higher can use this command"
+            self.RaffleTime = 30.0
 
     # Reload settings on save through UI
     def Reload(self, data):
@@ -210,7 +211,7 @@ def Execute(data):
 
     if State == 1 and data.IsChatMessage() and data.GetParam(0).lower() == MySet.JoinCommand.lower():
         JoinedPlayers.append(data)
-        SendResp(data, MySet.Usage, MySet.TestMessage1)
+        SendResp(data, MySet.Usage, MySet.JoinMessage)
         return
     return
 
@@ -243,7 +244,7 @@ def Tick():
 
     if StartTime is not None:
         elapsedTime = time.time() - StartTime
-        if elapsedTime > 30.0:
+        if elapsedTime > MySet.RaffleTime:
             PickWinner(StartData)
 
     return

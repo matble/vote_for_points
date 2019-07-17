@@ -21,6 +21,16 @@
     "tooltip": "The command people will use to join the raffle",
     "group": "General"
   },
+  "RaffleTime": {
+    "type": "slider",
+    "value": 30,
+	"min": 0,
+	"max": 200,
+	"ticks": 5,
+    "label": "Raffle Time",
+    "tooltip": "How long the raffle lasts, in seconds.",
+    "group": "General"
+  },
   "Permission": {
     "type": "dropdown",
     "value": "Everyone",
