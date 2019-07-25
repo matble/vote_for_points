@@ -128,13 +128,5 @@
     "function": "OpenReadMe",
     "wsevent": "",
     "group": ""
-  },
-  "ReportBug": {
-    "type": "button",
-    "label": "Report a Bug",
-    "tooltip": "Opens report form in your default browser",
-    "function": "ReportBug",
-    "wsevent": "",
-    "group": ""
-  }
+  }   
 }

@@ -5,7 +5,6 @@
 #---------------------------------------
 # Libraries and references
 #---------------------------------------
-from fractions import Fraction
 import codecs
 import json
 import os
@@ -124,32 +123,6 @@ def SendResp(data, Usage, Message):
     if data.IsFromDiscord() and data.IsWhisper() and (Usage in l):
         Parent.SendDiscordDM(data.User, Message)
 
-def IsFromValidSource(data, Usage):
-    """Return true or false depending on the message is sent from
-    a source that's in the usage setting or not"""
-    if not data.IsFromDiscord():
-        l = ["Stream Chat", "Chat Both", "All", "Stream Both"]
-        if not data.IsWhisper() and (Usage in l):
-            return True
-
-        l = ["Stream Whisper", "Whisper Both", "All", "Stream Both"]
-        if data.IsWhisper() and (Usage in l):
-            return True
-
-    if data.IsFromDiscord():
-        l = ["Discord Chat", "Chat Both", "All", "Discord Both"]
-        if not data.IsWhisper() and (Usage in l):
-            return True
-
-        l = ["Discord Whisper", "Whisper Both", "All", "Discord Both"]
-        if data.IsWhisper() and (Usage in l):
-            return True
-    return False
-
-def ReportBug():
-    """Open google form to report a bug"""
-    os.system("explorer https://goo.gl/forms/wATNZWSkmmYhur9q2")
-
 #---------------------------------------
 # [Required] functions
 #---------------------------------------
@@ -193,9 +166,6 @@ def Execute(data):
     global StartData
 
     if State == 0 and data.IsChatMessage() and data.GetParam(0).lower() == MySet.Command.lower():
-
-        if not IsFromValidSource(data, MySet.Usage):
-            return
 
         if not HasPermission(data):
             return
