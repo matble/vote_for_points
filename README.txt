@@ -1,8 +1,8 @@
 #####################
-#  Raffle Minigame  #
+#  Voting Minigame  #
 #####################
 
-Description: Allow users to start a raffle for currency. One user at random will win. Options in UI
+Description: Allow users to start a vote where the winner gets currency.
 Made By: GeneralRommel
 Website: https://www.twitch.tv/generalrommel
 
@@ -17,8 +17,11 @@ Website: https://www.twitch.tv/generalrommel
 #      Usage        #
 #####################
 
-!raffle <amount>
-Starts a raffle for the given amount
+!startvote
+Starts a votefor the given amount
 
-!join
-Joins an active raffle
+!vote 1
+Votes for team 1
+
+!win 1
+Selects the winning team and awards points.

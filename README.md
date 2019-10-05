@@ -1,2 +1,2 @@
-# chatbot_raffle
-A raffle script for Streamlabs Chatbot.
+# chatbot_vote
+A voting script for Streamlabs Chatbot.
