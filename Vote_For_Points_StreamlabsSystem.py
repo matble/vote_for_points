@@ -164,10 +164,8 @@ def Execute(data):
     global StartData
 
     if State == 0 and data.IsChatMessage() and data.GetParam(0).lower() == MySet.StartCommand.lower():
-
         if not HasPermission(data):
             return
-
         if not MySet.OnlyLive or Parent.IsLive():
             State = 1
             message = MySet.StartResponse
@@ -182,11 +180,15 @@ def Execute(data):
         return
 
     if State == 1 and data.IsChatMessage() and data.GetParam(0).lower() == MySet.EndCommand.lower():
+        if not HasPermission(data):
+            return
         State = 2
         SendResp(data, MySet.Usage, MySet.EndResponse)
         return
 
     if (State == 1 or State == 2) and data.IsChatMessage() and data.GetParam(0).lower() == MySet.WinCommand.lower():
+        if not HasPermission(data):
+            return
         HandleWinner(data)
         return
 
@@ -210,7 +212,7 @@ def HandleWinner(data):
             Parent.AddPoints(player.User, player.UserName, 1)
 
     currency = Parent.GetCurrencyName()
-    winMessage = MySet.EndResponse.format(winningTeam, currency)
+    winMessage = MySet.WinResponse.format(winningTeam, currency)
     SendResp(data, MySet.Usage, winMessage)
     JoinedPlayers = []
     return
