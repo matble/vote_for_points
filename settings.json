@@ -1,0 +1,16 @@
+﻿{
+  "OnlyLive": false,
+  "StartCommand": "!startvote",
+  "EndCommand": "!endvote",
+  "VoteCommand": "!vote",
+  "WinCommand": "!win",
+  "Permission": "Caster",
+  "Usage": "Stream Chat",
+  "EndResponse": "Voting is now closed!  Wait for the announcement to see who wins, good luck!",
+  "WinResponse": "Team {0} has won! Everyone who voted for them gets 1 {1}.",
+  "StartResponse": "A round of voting for which team will win has started! Type !vote 1-5 to vote for teams 1-5.",
+  "VoteMessage": "$user your vote has been registered.",
+  "PermissionResp": "$user -> only $permission ($permissioninfo) and higher can use this command",
+  "PermissionInfo": "",
+  "VoteTime": -1
+}

@@ -41,12 +41,14 @@ class Settings:
         else: #set variables if no custom settings file is found
             self.OnlyLive = True
             self.StartCommand = "!startvote"
+            self.EndCommand = "!endvote"
             self.VoteCommand = "!vote"
             self.WinCommand = "!win"
             self.Permission = "Caster"
             self.PermissionInfo = ""
             self.Usage = "Stream Chat"
-            self.EndResponse = "Team {0} has won! Everyone who voted for them gets 1 {1}"
+            self.EndResponse = "Voting is now closed!  Wait for the announcement to see who wins, good luck!"
+            self.WinResponse = "Team {0} has won! Everyone who voted for them gets 1 {1}"
             self.StartResponse = "A round of voting for which team will win has started! Type !vote 1-5 to vote for teams 1-5."
             self.VoteMessage = "$user your vote has been registered."
             self.PermissionResp = "$user -> only $permission ($permissioninfo) and higher can use this command"
@@ -179,7 +181,12 @@ def Execute(data):
         SendResp(data, MySet.Usage, MySet.VoteMessage)
         return
 
-    if State == 1 and data.IsChatMessage() and data.GetParam(0).lower() == MySet.WinCommand.lower():
+    if State == 1 and data.IsChatMessage() and data.GetParam(0).lower() == MySet.EndCommand.lower():
+        State = 2
+        SendResp(data, MySet.Usage, MySet.EndResponse)
+        return
+
+    if (State == 1 or State == 2) and data.IsChatMessage() and data.GetParam(0).lower() == MySet.WinCommand.lower():
         HandleWinner(data)
         return
 
